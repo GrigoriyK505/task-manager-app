@@ -1,0 +1,33 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search {
+    display: flex;
+    justify-content: center;
+
+    width: 100%;
+    max-width: 400px;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+
+    background-color: #dda15e;
+    border: 1px solid #dda15e;
+    border-radius: 5px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+    font-size: 16px;
+}
+
+.search:focus {
+    border-color: #bb6b25;
+    outline: none;
+    box-shadow: 0 0 5px rgba(187, 107, 37, 0.5);
+}
+
+::placeholder {
+    color: #230C0F;
+    font-family: Bradley Hand, cursive;
+}
