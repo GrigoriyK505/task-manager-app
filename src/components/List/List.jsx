@@ -15,7 +15,7 @@ const getVisibleTasks = (tasks, statusFilter) => {
 
 const List = () => {
     const tasks = useSelector((state) => state.tasks.items);
-    const statusFilter = useSelector((state) => state.filter.status);
+    const statusFilter = useSelector((state) => state.filters.status);
     const visibleTasks = getVisibleTasks(tasks, statusFilter);
 
     return (
