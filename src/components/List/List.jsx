@@ -21,7 +21,7 @@ const List = () => {
     return (
         <ul className={s.list}>
             {visibleTasks.map((task) => (
-                <li className={s.listItem} key={task.id}>
+                <li className={s.listItem} key={task._id}>
                     <ListItem task={task}/>
                 </li>
             ))}

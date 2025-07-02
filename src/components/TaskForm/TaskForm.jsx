@@ -4,26 +4,42 @@ import { addTask } from '../../redux/tasks/operations.js';
 import Button from '../Button/Button.jsx';
 
 const TaskForm = () => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const form = e.target;
-        dispatch(addTask(e.target.elements.text.value));
-        form.reset();
-    };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const title = form.elements.title.value.trim();
+    const description = form.elements.description.value.trim();
 
-    return (
-        <form className={s.form} onSubmit={handleSubmit}>
-            <input
-                name="text"
-                type="text"
-                className={s.field}
-                placeholder="Enter task text..."
-            />
-            <Button type="submit">Add task</Button>
-        </form>
-    );
-}
+    if (!title) return;
+
+    dispatch(addTask({
+      title,
+      description,
+      taskType: 'active', // або інше значення за замовчуванням
+    }));
+
+    form.reset();
+  };
+
+  return (
+    <form className={s.form} onSubmit={handleSubmit}>
+      <input
+        name="title"
+        type="text"
+        className={s.field}
+        placeholder="Enter task title..."
+        required
+      />
+      <textarea
+        name="description"
+        className={s.field}
+        placeholder="Enter task description (optional)..."
+      />
+      <Button type="submit">Add task</Button>
+    </form>
+  );
+};
 
 export default TaskForm;
