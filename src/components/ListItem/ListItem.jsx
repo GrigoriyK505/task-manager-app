@@ -1,7 +1,6 @@
 import s from './ListItem.module.css';
 import { useDispatch } from "react-redux";
-import { deleteTask } from "../../redux/tasks/operations.js";
-import { toggleCompleted } from "../../redux/toggle/operations.js";
+import { deleteTask, toggleCompleted } from "../../redux/tasks/operations.js";
 
 const ListItem = ({task}) => {
     const dispatch = useDispatch();
