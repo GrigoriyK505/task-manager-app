@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchTasks } from '../../redux/tasks/operations.js';
 import TaskForm from '../TaskForm/TaskForm.jsx';
-import AppBar from '../AppBar/AppBar.jsx';
 import List from '../List/List.jsx';
+import StatusFilter from '../StatusFilter/StatusFilter.jsx';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -17,8 +17,11 @@ const App = () => {
   
   return (
     <div className={s.container}>
-      <AppBar />
-      <TaskForm />
+      <h2 className={s.title}>TODO LIST</h2>
+      <section className={s.form}>
+        <TaskForm />
+        <StatusFilter />
+      </section>
 
       {loading && !error && <b>Request in progress...</b>}
 

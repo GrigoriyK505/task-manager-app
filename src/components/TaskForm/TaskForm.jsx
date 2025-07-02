@@ -17,7 +17,7 @@ const TaskForm = () => {
     dispatch(addTask({
       title,
       description,
-      taskType: 'active',
+      completed: false
     }));
 
     form.reset();
@@ -35,7 +35,7 @@ const TaskForm = () => {
       <textarea
         name="description"
         className={s.field}
-        placeholder="Enter task description (optional)..."
+        placeholder="Enter task description..."
       />
       <Button type="submit">Add task</Button>
     </form>

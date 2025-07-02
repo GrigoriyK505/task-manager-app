@@ -1,20 +1,25 @@
 import s from './List.module.css';
-import { useSelector } from "react-redux";
 import ListItem from "../ListItem/ListItem.jsx";
-import {selectFilteredTasks} from '../../redux/tasks/selectors.js'
+import { useSelector } from "react-redux";
 
 const List = () => {
-    const tasks = useSelector(selectFilteredTasks);
+  const tasks = useSelector(state => state.tasks.items) ?? [];
+  const completedFilter = useSelector(state => state.filters.completed);
 
-    return (
-        <ul className={s.list}>
-            {tasks.map(task => (
-                <li className={s.listItem} key={task._id}>
-                    <ListItem task={task}/>
-                </li>
-            ))}
-        </ul>
-    );
+  const filteredTasks = tasks.filter(task => {
+    if (completedFilter === null) return true;
+    return task.completed === completedFilter;
+  });
+
+  return (
+    <ul className={s.list}>
+      {filteredTasks.map(task => (
+        <li className={s.listItem} key={task._id}>
+          <ListItem task={task} />
+        </li>
+      ))}
+    </ul>
+  );
 };
 
 export default List;

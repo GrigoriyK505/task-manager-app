@@ -1,3 +1,6 @@
+import "primereact/resources/themes/bootstrap4-light-purple/theme.css";  // или другую тему
+import "primereact/resources/primereact.min.css";
+import "primeicons/primeicons.css";
 import { StrictMode } from 'react';
 import {store} from './redux/store.js';
 import { Provider } from 'react-redux';

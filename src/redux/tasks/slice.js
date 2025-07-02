@@ -32,14 +32,15 @@ const tasksSlice = createSlice({
       .addCase(fetchTasks.pending, handlePending)
       .addCase(fetchTasks.rejected, handleRejected)
       .addCase(fetchTasks.fulfilled, (state, action) => {
-        state.items = action.payload.tasks;
-        state.meta = action.payload.meta;
+        state.items = action.payload.data ?? [];
+        state.meta = action.payload.meta ?? state.meta;
         state.loading = false;
         state.error = null;
       })
       .addCase(addTask.pending, handlePending)
       .addCase(addTask.rejected, handleRejected)
       .addCase(addTask.fulfilled, (state, action) => {
+        if (!state.items) state.items = [];
         state.items.push(action.payload);
         state.loading = false;
         state.error = null;
@@ -54,12 +55,13 @@ const tasksSlice = createSlice({
       .addCase(toggleCompleted.pending, handlePending)
       .addCase(toggleCompleted.rejected, handleRejected)
       .addCase(toggleCompleted.fulfilled, (state, action) => {
+        const updatedTask = action.payload.data ?? action.payload;
         state.items = state.items.map((task) =>
-          task._id === action.payload._id ? action.payload : task
+        task._id === updatedTask._id ? updatedTask : task
         );
         state.loading = false;
         state.error = null;
-      })
+})
 
   },
 });

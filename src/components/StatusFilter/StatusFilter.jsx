@@ -1,29 +1,34 @@
 import { useDispatch, useSelector } from "react-redux";
-import { changeFilter } from "../../redux/filters/slice";
+import { setCompletedFilter } from "../../redux/filters/slice";
 import { Dropdown } from 'primereact/dropdown';
+import s from './StatusFilter.module.css';
 
 const StatusFilter = () => {
   const dispatch = useDispatch();
-  const filterName = useSelector(state => state.filters.name);
+  const completed = useSelector(state => state.filters.completed);
+
   const options = [
-    { label: "Все", value: "all" },
-    { label: "Завершенные", value: "complete" },
-    { label: "Активные", value: "incomplete" },
+    { label: "All", value: null },
+    { label: "Complete", value: true },
+    { label: "Active", value: false },
   ];
 
   const handleChange = (e) => {
-    dispatch(changeFilter(e.value));
+    dispatch(setCompletedFilter(e.value));
   };
 
   return (
+    <div className={s.customDropdownWrapper}>
     <Dropdown
-      value={filterName}
+      value={completed}
       options={options}
       optionLabel="label"
       optionValue="value"
       onChange={handleChange}
       placeholder="Выберите фильтр"
-    />
+      showClear={true}
+      />
+    </div>
   );
 };
 

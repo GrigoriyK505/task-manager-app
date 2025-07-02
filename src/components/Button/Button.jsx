@@ -1,9 +1,9 @@
 import s from './Button.module.css';
 
-const Button = ({name, onClick}) => {
+const Button = ({onClick}) => {
     return (
         <button onClick={onClick} className={s.button}>
-            {name}
+            All
         </button>
     )
 };

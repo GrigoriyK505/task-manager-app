@@ -1,0 +1,36 @@
+.p-component {
+  background-color: #6c63ff !important;
+  color: #f7f7f7 !important;
+  border-radius: 5px !important;
+  padding: 10px !important;
+  font-family: "Kanit", sans-serif !important;
+  font-weight: 500 !important;
+  font-size: 18px !important;
+  text-transform: uppercase !important;
+  border: none !important;
+  box-shadow: none !important;
+  width: 200px !important;
+}
+
+.customDropdownWrapper .p-dropdown-label {
+  color: #f7f7f7 !important;
+}
+
+.customDropdownWrapper .p-dropdown-trigger {
+  color: #f7f7f7 !important;
+}
+
+/* Панель выпадающего списка */
+.customDropdownWrapper .p-dropdown-panel {
+  background-color: #6c63ff !important;
+  border-radius: 5px !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: #f7f7f7 !important;
+}
+
+/* Выделенный пункт */
+.customDropdownWrapper .p-dropdown-item.p-highlight {
+  background-color: #574fcf !important;
+  color: #f7f7f7 !important;
+}

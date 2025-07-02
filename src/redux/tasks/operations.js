@@ -1,15 +1,24 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-axios.defaults.baseURL = 'https://task-manager-app-back-nuej.onrender.com';
+export const api = axios.create({
+  baseURL: "https://task-manager-app-back-nuej.onrender.com",
+});
+
 
 export const fetchTasks = createAsyncThunk(
   'tasks/fetchAll',
-  async (taskType = 'all', thunkAPI) => {
+  async (_, thunkAPI) => {
     try {
-      const params = taskType === 'all' ? {} : { taskType };
-      const response = await axios.get('/api/tasks', { params });
-      return response.data.data;
+      const state = thunkAPI.getState();
+      const { completed } = state.filters;
+
+      const params = {};
+      if (completed !== null) params.completed = completed;
+
+      const response = await api.get('/tasks', { params });
+       console.log("fetchTasks response.data:", response.data);
+      return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
@@ -20,7 +29,7 @@ export const addTask = createAsyncThunk(
     'tasks/addTask', 
     async(task, thunkAPI) => {
     try {
-        const response = await axios.post(`/tasks`, task);
+        const response = await api.post(`/tasks`, task);
         return response.data.data;
     } catch (e) {
         return thunkAPI.rejectWithValue(e.message);
@@ -31,7 +40,7 @@ export const deleteTask = createAsyncThunk(
     'tasks/deleteTask', 
     async(id, thunkAPI) => {
     try {
-        await axios.delete(`/tasks/${id}`);
+        await api.delete(`/tasks/${id}`);
         return id;
     } catch (e) {
         return thunkAPI.rejectWithValue(e.message);
@@ -40,7 +49,7 @@ export const deleteTask = createAsyncThunk(
 
 export const toggleCompleted = createAsyncThunk('tasks/toggleCompleted', async (task, thunkAPI) => {
     try {
-        const response = await axios.patch(`/tasks/${task.id}`, {
+        const response = await api.patch(`/tasks/${task._id}`, {
             completed: !task.completed,
         });
         return response.data;
