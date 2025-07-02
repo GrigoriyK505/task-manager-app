@@ -1,37 +1,30 @@
-import { useDispatch, useSelector } from "react-redux"
-import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { changeFilter } from "../../redux/filters/slice";
 import { Dropdown } from 'primereact/dropdown';
-import { setStatusFilter } from "../../redux/filters/slice.js";
-import { fetchStatusFilters } from "../../redux/filters/operations.js";
-import s from './StatusFilter.module.css';
 
 const StatusFilter = () => {
-    const dispatch = useDispatch();
-    const statusFilter = useSelector((state) => state.filters.status);
-    const filterOptions = useSelector((state) => state.filters.list);
-    const loading = useSelector((state) => state.filters.loading);
+  const dispatch = useDispatch();
+  const filterName = useSelector(state => state.filters.name);
+  const options = [
+    { label: "Все", value: "all" },
+    { label: "Завершенные", value: "complete" },
+    { label: "Активные", value: "incomplete" },
+  ];
 
-    useEffect(() => {
-        dispatch(fetchStatusFilters());
-    }, [dispatch]);
+  const handleChange = (e) => {
+    dispatch(changeFilter(e.value));
+  };
 
-    const handleFilterChange = (e) => {
-        dispatch(setStatusFilter(e.value));
-    };
-
-    return (
-        <div className={s.wrapper}>
-            <Dropdown 
-                value={statusFilter}   
-                onChange={handleFilterChange} 
-                options={filterOptions}
-                optionLabel="label"
-                optionValue="value"
-                loading={loading} 
-                placeholder="Select a filter"
-            />
-        </div>
-    )
+  return (
+    <Dropdown
+      value={filterName}
+      options={options}
+      optionLabel="label"
+      optionValue="value"
+      onChange={handleChange}
+      placeholder="Выберите фильтр"
+    />
+  );
 };
 
 export default StatusFilter;

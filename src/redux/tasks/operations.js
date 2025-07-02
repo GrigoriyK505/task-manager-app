@@ -3,17 +3,22 @@ import axios from "axios";
 
 axios.defaults.baseURL = 'https://task-manager-app-back-nuej.onrender.com';
 
-export const fetchTasks = createAsyncThunk('tasks/fetchAll', async(_, thunkAPI) => {
+export const fetchTasks = createAsyncThunk(
+  'tasks/fetchAll',
+  async (taskType = 'all', thunkAPI) => {
     try {
-        const {data} = await axios.get(`/tasks`);
-        const {data: tasks, ...meta} = data;
-        return {tasks, meta};
+      const params = taskType === 'all' ? {} : { taskType };
+      const response = await axios.get('/api/tasks', { params });
+      return response.data.data;
     } catch (e) {
-        return thunkAPI.rejectWithValue(e.message);
+      return thunkAPI.rejectWithValue(e.message);
     }
-});
+  }
+);
 
-export const addTask = createAsyncThunk('tasks/addTask', async(task, thunkAPI) => {
+export const addTask = createAsyncThunk(
+    'tasks/addTask', 
+    async(task, thunkAPI) => {
     try {
         const response = await axios.post(`/tasks`, task);
         return response.data.data;
@@ -22,7 +27,9 @@ export const addTask = createAsyncThunk('tasks/addTask', async(task, thunkAPI) =
     }
 });
 
-export const deleteTask = createAsyncThunk('tasks/deleteTask', async(id, thunkAPI) => {
+export const deleteTask = createAsyncThunk(
+    'tasks/deleteTask', 
+    async(id, thunkAPI) => {
     try {
         await axios.delete(`/tasks/${id}`);
         return id;

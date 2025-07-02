@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { deleteTask, toggleCompleted } from "../../redux/tasks/operations.js";
 
 const ListItem = ({task}) => {
+    const {title, description} = task;
     const dispatch = useDispatch();
 
     const handleDelete = () => dispatch(deleteTask(task.id));
@@ -17,7 +18,8 @@ const ListItem = ({task}) => {
                 checked={task.completed}
                 onChange={handleToggle}
             />
-            <p className={s.text}>{task.text}</p>
+            <p className={s.text}>{title}</p>
+            <p>{description}</p>
             <button className={s.button} onClick={handleDelete}>
 
             </button>

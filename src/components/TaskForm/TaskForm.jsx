@@ -17,7 +17,7 @@ const TaskForm = () => {
     dispatch(addTask({
       title,
       description,
-      taskType: 'active', // або інше значення за замовчуванням
+      taskType: 'active',
     }));
 
     form.reset();

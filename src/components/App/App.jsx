@@ -19,8 +19,12 @@ const App = () => {
     <div className={s.container}>
       <AppBar />
       <TaskForm />
-      {loading && !error && <b>Request in progress</b>}
-      <List />
+
+      {loading && !error && <b>Request in progress...</b>}
+
+      {error && <p style={{ color: "red" }}>Error: {error}</p>}
+
+      {!loading && !error && <List />}
     </div>
   )
 }
