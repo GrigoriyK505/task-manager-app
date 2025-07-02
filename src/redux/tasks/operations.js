@@ -12,21 +12,21 @@ export const fetchTasks = createAsyncThunk('tasks/fetchAll', async(_, thunkAPI) 
     }
 });
 
-export const addTask = createAsyncThunk('tasks/addTask', async(body, thunkAPI) => {
+export const addTask = createAsyncThunk('tasks/addTask', async(taskData, thunkAPI) => {
     try {
-        const {data} = await axios.post(`/tasks`, body);
-        return data;
-    } catch (error) {
-        return thunkAPI.rejectWithValue(error.message);
+        const response = await axios.post(`/tasks`, taskData);
+        return response.data;
+    } catch (e) {
+        return thunkAPI.rejectWithValue(e.message);
     }
 });
 
 export const deleteTask = createAsyncThunk('tasks/deleteTask', async(id, thunkAPI) => {
     try {
-        const {data} = await axios.delete(`/tasks/${id}`);
-        return data.id;
-    } catch (error) {
-        return thunkAPI.rejectWithValue(error.message);
+        await axios.delete(`/tasks/${id}`);
+        return {id};
+    } catch (e) {
+        return thunkAPI.rejectWithValue(e.message);
     }
 });
 

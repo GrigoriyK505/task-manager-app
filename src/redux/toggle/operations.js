@@ -7,8 +7,8 @@ export const toggleCompleted = createAsyncThunk('tasks/toggleCompleted', async (
             completed: !task.completed,
         });
         return response.data;
-    } catch (error) {
-        return thunkAPI.rejectWithValue(error.message);
+    } catch (e) {
+        return thunkAPI.rejectWithValue(e.message);
     }
 }
 )
