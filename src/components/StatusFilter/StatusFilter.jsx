@@ -25,7 +25,7 @@ const StatusFilter = () => {
       optionLabel="label"
       optionValue="value"
       onChange={handleChange}
-      placeholder="Выберите фильтр"
+      placeholder="Select a filter"
       showClear={true}
       />
     </div>

@@ -57,3 +57,16 @@ export const toggleCompleted = createAsyncThunk('tasks/toggleCompleted', async (
         return thunkAPI.rejectWithValue(e.message);
     }
 });
+
+export const updateTask = createAsyncThunk(
+  "tasks/updateTask",
+  async (task, thunkAPI) => {
+    try {
+      const {_id, ...updatedFields} = task;
+      const {data} = await api.patch(`/tasks/${_id}`, updatedFields);
+      return data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);

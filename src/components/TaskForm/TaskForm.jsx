@@ -37,7 +37,7 @@ const TaskForm = () => {
         className={s.field}
         placeholder="Enter task description..."
       />
-      <Button type="submit">Add task</Button>
+      <Button type="submit"></Button>
     </form>
   );
 };

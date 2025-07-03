@@ -1,10 +1,13 @@
 .wrapper {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 24px;
   justify-content: space-between;
+  gap: 16px;
+  padding: 12px;
   color: #000000;
   font-family: "Kanit", sans-serif;
+  border-bottom: 1px solid #ccc;
 }
 
 .checkbox {
@@ -15,35 +18,77 @@
   flex-shrink: 0;
 }
 
-.text {
+.containerText {
   flex-grow: 1;
+  min-width: 200px;
+}
+
+.text {
   font-weight: 500;
   font-size: 18px;
   margin: 0;
   user-select: none;
+  word-break: break-word;
 }
 
-button {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  gap: 10px;
+p {
+  margin: 4px 0;
+}
+
+.button {
   border-radius: 5px;
   border: none;
-  box-shadow: none;
   padding: 10px 16px;
   background: #6c63ff;
-  
   font-family: "Kanit", sans-serif;
   font-weight: 500;
-  font-size: 18px;
-  line-height: 1;
+  font-size: 16px;
   color: #f7f7f7;
-
   cursor: pointer;
   transition: background-color 0.3s ease;
+  flex-shrink: 0;
 }
 
-button:hover {
-  background: #574fcf; /* чуть темнее при наведении */
+.button:hover {
+  background: #574fcf;
+}
+
+.input {
+  font-family: "Kanit", sans-serif;
+  font-size: 16px;
+  padding: 8px 12px;
+  margin: 4px 0;
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.input:focus {
+  border-color: #6c63ff;
+  outline: none;
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  .containerText {
+    width: 100%;
+  }
+
+  .input {
+    font-size: 15px;
+    max-width: 100%;
+    padding: 10px;
+  }
 }

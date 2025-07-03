@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addTask, deleteTask, fetchTasks, toggleCompleted } from "./operations.js";
+import { addTask, deleteTask, fetchTasks, toggleCompleted, updateTask } from "./operations.js";
 
 const handleRejected = (state, action) => {
     state.loading = false;
@@ -61,8 +61,14 @@ const tasksSlice = createSlice({
         );
         state.loading = false;
         state.error = null;
-})
-
+      })
+      .addCase(updateTask.fulfilled, (state, action) => {
+        const updated = action.payload.data;
+        const index = state.items.findIndex(task => task._id === updated._id);
+        if(index !== -1) {
+          state.items[index] = updated;
+        }
+      });
   },
 });
 

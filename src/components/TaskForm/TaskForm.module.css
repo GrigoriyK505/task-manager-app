@@ -1,22 +1,55 @@
 .form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 12px;
+  box-sizing: border-box;
 }
 
 .field {
-    border: 1px solid #6c63ff;
-    border-radius: 5px;
-    padding: 8px 16px;
-    width: 595px;
-    height: 38px;
-    resize: none;
+  border: 1px solid #6c63ff;
+  border-radius: 5px;
+  padding: 10px 16px;
+  width: 100%;
+  height: 40px;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  box-sizing: border-box;
+  resize: none;
+}
+
+textarea.field {
+  height: 80px;
 }
 
 ::placeholder {
-    font-family: "Inter", sans-serif;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 1;
-    color: #c3c1e5;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #c3c1e5;
+}
+
+@media (max-width: 768px) {
+  .form {
+    padding: 8px;
+  }
+
+  .field {
+    font-size: 15px;
+    padding: 8px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .field {
+    font-size: 14px;
+    height: 36px;
+  }
+
+  textarea.field {
+    height: 70px;
+  }
 }
