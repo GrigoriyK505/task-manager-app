@@ -16,7 +16,7 @@ const TaskForm = () => {
 
     dispatch(addTask({
       title,
-      description,
+      description: description || "",
       completed: false
     }));
 
